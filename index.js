@@ -59,11 +59,12 @@ inquirer.
             type: 'list',
             message: 'Choose a license from the following list',
             name: 'licenseBadge',
-            choices: [ 'https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg', '![License: IPL 1.0](https://img.shields.io/badge/License-IPL_1.0-blue.svg)', '![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)' ]
+            choices: [ 'Creative Commons', 'IPL', 'MPL' ]
         }
     ])
     .then((response) => {
         console.log(response)
+        console.log('github.com/' + response.userName)
         const readmeContent = generateReadme(response);
         fs.writeFile('readme.md', readmeContent, (err) => {
             if (err) {
@@ -75,16 +76,25 @@ inquirer.
     });
 
     function generateReadme(input) {
+        if (input.licenseBadge === 'Creative Commons') {
+            input.licenseBadge = 'https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg'
+        } else if (input.licenseBadge === 'IPL') {
+            input.licenseBadge ='https://img.shields.io/badge/License-IPL_1.0-blue.svg'
+        } else {
+            input.licenseBadge = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
+        }
         let readmeTemplate = `
 <div style="align-items: center">
 <h1 style="font-size: 40px; font-weight: bold; text-align: center;">${input.projectName}</h1>
 <img src=${input.licenseBadge}>
 </div>
 
-
 ## Description 
 ${input.description}
-    
+
+## Table of Contents
+* [Usage](#usage)
+
 ## Usage 
 ${input.usageInfo}
     
