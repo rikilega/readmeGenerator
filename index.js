@@ -25,17 +25,22 @@ inquirer.
         },
         {
             type: 'input',
-            message: 'What is your application description',
+            message: 'What is your application description?',
             name: 'description',
         },
         {
             type: 'input',
-            message: 'What is your application usage information',
+            message: 'What are the installation instructions?',
+            name: 'installation',
+        },
+        {
+            type: 'input',
+            message: 'What is your application usage information?',
             name: 'usageInfo',
         },
         {
             type: 'input',
-            message: 'What are the contribution guidelines',
+            message: 'What are the contribution guidelines?',
             name: 'contributionGuide',
         },
         {
@@ -94,18 +99,26 @@ ${input.description}
 
 ## Table of Contents
 * [Usage](#usage)
+* [Installation](#installation)                                     
+* [License](#license)                             
+* [Contributing](#contributing)                     
+* [Tests](#tests)
+* [Quesions](#questions)
+
+## Installation
+${input.installation}
 
 ## Usage 
 ${input.usageInfo}
-    
-## Contribution Guidelines 
-${input.contributionGuide}
-    
-## Test Instructions 
-${input.testInstr}
-    
+
 ## License 
 This project is licensed under the ${input.license} license.
+    
+## Contributing 
+${input.contributionGuide}
+    
+## Tests 
+${input.testInstr}
     
 ## Questions 
 If you have any questions, you can reach me through my github: [@rikilega](github.com/${input.userName}) or my email: ${input.emailAddress}
