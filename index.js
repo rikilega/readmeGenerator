@@ -1,5 +1,15 @@
 const fs = require('fs');
 const inquirer = require('inquirer')
+const questionList = [
+    'How do I install or use this project?',
+    'I found a bug, what should I do?',
+    'I have a feature request or an idea for this project, how can I share it?',
+    'How can I contribute to this project?',
+    'Can I use this project for commercial purposes?',
+    'Is there any support if I face issues or need help?',
+    'How can I stay updated with the latest changes or versions?',
+    'Who maintains this project?'
+  ];
 
 inquirer.
     prompt([
@@ -50,23 +60,12 @@ inquirer.
         },
         {
             type: 'list',
-            message: 'What license do you want to use',
-            name: 'license',
-            choices: [ 'MIT', 'Public', 'Copyright' ],
-        },
-        {
-            type: 'list',
-            message: 'choose your method of communication from the following list',
-            name: 'communicationMethod',
-            choices: [ 'email', 'phone', 'fax' ],
-        },
-        {
-            type: 'list',
             message: 'Choose a license from the following list',
             name: 'licenseBadge',
             choices: [ 'Creative Commons', 'IPL', 'MPL' ]
         }
     ])
+        
     .then((response) => {
         console.log(response)
         console.log('github.com/' + response.userName)
@@ -82,16 +81,17 @@ inquirer.
 
     function generateReadme(input) {
         if (input.licenseBadge === 'Creative Commons') {
-            input.licenseBadge = 'https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg'
+            input.licenseBadgeURL = 'https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg'
         } else if (input.licenseBadge === 'IPL') {
-            input.licenseBadge ='https://img.shields.io/badge/License-IPL_1.0-blue.svg'
+            input.licenseBadgeURL ='https://img.shields.io/badge/License-IPL_1.0-blue.svg'
         } else {
-            input.licenseBadge = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
+            input.licenseBadgeURL = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
         }
         let readmeTemplate = `
 <div style="align-items: center">
 <h1 style="font-size: 40px; font-weight: bold; text-align: center;">${input.projectName}</h1>
-<img src=${input.licenseBadge}>
+<h3 style="font-size: 16px; font-weight: fine; text-align: center;">${input.name}</h3>
+<img src=${input.licenseBadgeURL} style="align-items: center;">
 </div>
 
 ## Description 
@@ -112,7 +112,7 @@ ${input.installation}
 ${input.usageInfo}
 
 ## License 
-This project is licensed under the ${input.license} license.
+This project is licensed under the ${input.licenseBadge} license.
     
 ## Contributing 
 ${input.contributionGuide}
