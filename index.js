@@ -9,7 +9,7 @@ const questionList = [
     'Is there any support if I face issues or need help?',
     'How can I stay updated with the latest changes or versions?',
     'Who maintains this project?'
-  ];
+    ];
 
 inquirer.
     prompt([
@@ -63,8 +63,35 @@ inquirer.
             message: 'Choose a license from the following list',
             name: 'licenseBadge',
             choices: [ 'Creative Commons', 'IPL', 'MPL' ]
+        },
+        {
+            type: 'checkbox',
+            message: 'Choose the questions you would like to include in the questions section',
+            name: 'questions',
+            choices: questionList,
+            validate: function(answer) {
+                if (answer.length < 1) {
+                    return 'You must choose at least one question.';
+                }
+                return true;
+            }
         }
     ])
+
+    .then((response) => {
+        const selectedQuestions = response.questions;
+        const followUpQuestions = selectedQuestions.map((question) => {
+            return {
+                type: 'input',
+                name: question,
+                message: `Please provide an answer for the following question: ${question}`,
+            };
+        });
+    
+        return inquirer.prompt(followUpQuestions).then((answers) => {
+            return {...response, ...answers}; 
+        });
+    })
         
     .then((response) => {
         console.log(response)
@@ -87,6 +114,9 @@ inquirer.
         } else {
             input.licenseBadgeURL = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
         }
+        const questionsAnswers = input.questions.map(question => {
+            return `\n####${question}\n ${input[question]}`
+        }).join("\n")
         let readmeTemplate = `
 <div style="align-items: center">
 <h1 style="font-size: 40px; font-weight: bold; text-align: center;">${input.projectName}</h1>
@@ -94,16 +124,17 @@ inquirer.
 <img src=${input.licenseBadgeURL} style="align-items: center;">
 </div>
 
-## Description 
-${input.description}
-
 ## Table of Contents
-* [Usage](#usage)
-* [Installation](#installation)                                     
+* [Description](#description) 
+* [Installation](#installation) 
+* [Usage](#usage)                                    
 * [License](#license)                             
 * [Contributing](#contributing)                     
 * [Tests](#tests)
 * [Quesions](#questions)
+
+## Description 
+${input.description}
 
 ## Installation
 ${input.installation}
@@ -113,14 +144,16 @@ ${input.usageInfo}
 
 ## License 
 This project is licensed under the ${input.licenseBadge} license.
-    
+
 ## Contributing 
 ${input.contributionGuide}
-    
+
 ## Tests 
 ${input.testInstr}
-    
+
 ## Questions 
+${questionsAnswers}
+
 If you have any questions, you can reach me through my github: [@rikilega](github.com/${input.userName}) or my email: ${input.emailAddress}
     `;
         return readmeTemplate;
