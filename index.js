@@ -115,7 +115,7 @@ inquirer.
             input.licenseBadgeURL = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
         }
         const questionsAnswers = input.questions.map(question => {
-            return `\n###${question}\n ${input[question]}`
+            return `\n### ${question}\n ${input[question]}`
         }).join("\n")
         let readmeTemplate = `
 <div style="align-items: center">
@@ -131,7 +131,7 @@ inquirer.
 * [License](#license)                             
 * [Contributing](#contributing)                     
 * [Tests](#tests)
-* [Quesions](#questions)
+* [Questions](#questions)
 
 ## Description 
 ${input.description}
@@ -154,7 +154,7 @@ ${input.testInstr}
 ## Questions 
 ${questionsAnswers}
 
-If you have any questions, you can reach me through my github: [@rikilega](github.com/${input.userName}) or my email: ${input.emailAddress}
+If you have any additional questions, you can reach me through my github: [@rikilega](github.com/${input.userName}) or my email: ${input.emailAddress}
     `;
         return readmeTemplate;
     }
