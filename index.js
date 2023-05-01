@@ -115,7 +115,7 @@ inquirer.
             input.licenseBadgeURL = 'https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg'
         }
         const questionsAnswers = input.questions.map(question => {
-            return `\n####${question}\n ${input[question]}`
+            return `\n###${question}\n ${input[question]}`
         }).join("\n")
         let readmeTemplate = `
 <div style="align-items: center">
