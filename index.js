@@ -20,7 +20,7 @@ inquirer.
         },
         {
             type: 'input',
-            message: 'What is your name?',
+            message: 'What is your full name?',
             name: 'name',
         },
         {
@@ -84,7 +84,7 @@ inquirer.
             return {
                 type: 'input',
                 name: question,
-                message: `Please provide an answer for the following question: ${question}`,
+                message:  `${question}`,
             };
         });
     
@@ -154,7 +154,7 @@ ${input.testInstr}
 ## Questions 
 ${questionsAnswers}
 
-If you have any additional questions, you can reach me through my github: [@rikilega](github.com/${input.userName}) or my email: ${input.emailAddress}
+If you have any additional questions, you can reach me through my github: [@${input.userName}](github.com/${input.userName}) or my email: ${input.emailAddress}
     `;
         return readmeTemplate;
     }
