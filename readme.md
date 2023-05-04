@@ -13,6 +13,7 @@
 * [Contributing](#contributing)                     
 * [Tests](#tests)
 * [Questions](#questions)
+* [Code Links](#code)
 
 ## Description 
  This application allows users to quickly and easily create a professional readMe file for their project. The program uses node and takes the user through a series of prompts, utilizing inquirer, to establish what information will be displayed.  After going through all the prompts the application saves  the created readme.md file in the current directory. The readme file will consist of the title of the project and the name of the user at the top of the page. Below the title and name a license badge, chosen by the user, will be displayed. The table of contents is displayed below that, containing the different sections included in the readme as follows: Description, Installation, Usage, License, Contributing, Tests and Questions. Each item in the table of contents will allow the user to navigate directly to that specific section of the readme by clicking on it. Of course, after creating the readme file, changes can still be made, if desired, by editing the readme code directly. This readme you are reading now has been created using this application.
@@ -48,3 +49,5 @@ Ensure the application is properly installed by following the installation instr
 
 If you have any additional questions, you can reach me through my github: [@rikilega](github.com/rikilega) or my email: rosedoland33@yahoo.com
     
+## Code
+The index.js file can be found [here](index.js) and if you would like to watch a video showing how to use the app please click [here](https://drive.google.com/file/d/1ovokYA87lhXoO7mnx-Ojt2sGoCZ_FLDd/view)
