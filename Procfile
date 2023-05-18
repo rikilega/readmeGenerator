@@ -1,1 +1,1 @@
-web: mpm start
+web: node index.js
